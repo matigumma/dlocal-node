@@ -1,11 +1,11 @@
-import { Dlocal } from '../Dlocal'
-import { interceptors } from './interceptors'
+import { Dlocal } from '../Dlocal/index.mjs'
+import { interceptors } from './interceptors.mjs'
 
 export class Payin extends Dlocal {
   constructor ({ serverUrl, credentials, live }) {
     super({ serverUrl, credentials, live })
     this._instance = this._axios.create()
-    this._instance.defaults.headers.common['X-Version'] = '2.1'
+    // this._instance.defaults.headers['X-Version'] = '2.1'
     this._instance.interceptors.request.use((config) => {
       return interceptors(config, credentials, serverUrl)
     })

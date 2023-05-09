@@ -5,7 +5,7 @@ import { Payin } from '../'
 const options = {
   credentials: {
     x_login: process.env.DLOCAL_X_LOGIN,
-    x_trans_key: process.env.DLOCAL_X_TRANS_KEY,
+    x_api_key: process.env.DLOCAL_X_TRANS_KEY,
     secret_key: process.env.DLOCAL_X_SECRET_KEY
   },
   live: false

@@ -32,6 +32,7 @@ const getMessage = (config, credentials, nounce) => {
 }
 
 const getSignature = (credentials, message) => {
+  // console.log('credentials: ', credentials)
   return crypto
     .createHmac('sha256', credentials.secret_key)
     .update(message)
@@ -39,12 +40,13 @@ const getSignature = (credentials, message) => {
 }
 
 const signRequest = (config, credentials) => {
-  const nounce = new Date().toISOString()
-  config.headers.common['X-Date'] = nounce
-  const message = getMessage(config, credentials, nounce)
-  const signature = getSignature(credentials, message)
-  const authorization = `V2-HMAC-SHA256, Signature: ${signature}`
-  config.headers.common.Authorization = authorization
+  // const nounce = new Date().toISOString()
+  // console.log('config: ', config)
+  // config.headers['X-Date'] = nounce
+  // const message = getMessage(config, credentials, nounce)
+  // const signature = getSignature(credentials, message)
+  // const authorization = `V2-HMAC-SHA256, Signature: ${signature}`
+  // config.headers.Authorization = authorization
   return config
 }
 
@@ -82,6 +84,7 @@ export const interceptors = (config, credentials, serverUrl) => {
     : config
 
   config = signRequest(config, credentials)
+  console.log(config)
 
   return config
 }

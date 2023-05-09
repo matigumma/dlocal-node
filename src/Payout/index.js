@@ -19,7 +19,7 @@ export class Payout extends Dlocal {
   _sign (config, credentials) {
     const stringData = JSON.stringify(config.data || {})
     const signature = crypto.createHmac('sha256', credentials.secret_key).update(stringData).digest('hex')
-    config.headers.common['Payload-Signature'] = signature
+    config.headers['Payload-Signature'] = signature
     return config
   }
 
